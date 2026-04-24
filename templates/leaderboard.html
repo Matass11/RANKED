@@ -1,9 +1,21 @@
 <link rel="stylesheet" href="/static/style.css">
+<div class="container"></div>
 <h2>🏆 Leaderboard</h2>
 
 {% for name, elo in players %}
-    <p>{{ loop.index }}. {{ name }} — {{ elo }}</p>
+<div class="card">
+    <h3>{{ name }}</h3>
+    <p>
+        {{ elo }}
+        {% if delta and name in delta %}
+            <span class="elo-change">
+                {% if delta[name] > 0 %}+{% endif %}{{ delta[name]|round(0) }}
+            </span>
+        {% endif %}
+    </p>
+</div>
 {% endfor %}
 
 <br>
 <a href="/">Back</a>
+</div>

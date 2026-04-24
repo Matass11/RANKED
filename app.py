@@ -36,6 +36,13 @@ def play_match_route():
     p3 = request.form["p3"]
     p4 = request.form["p4"]
 
+    before_match = {
+        p1: players[p1],
+        p2: players[p2],
+        p3: players[p3],
+        p4: players[p4]
+    }
+
     score1 = int(request.form["score1"])
     score2 = int(request.form["score2"])
 
@@ -46,7 +53,20 @@ def play_match_route():
 
     save_data()
 
-    return redirect("/leaderboard")
+    delta = {
+        p1: players[p1] - before_match[p1],
+        p2: players[p2] - before_match[p2],
+        p3: players[p3] - before_match[p3],
+        p4: players[p4] - before_match[p4]
+    }
+
+    sorted_players = sorted(players.items(), key=lambda x: x[1], reverse=True)
+
+    return render_template(
+        "leaderboard.html",
+        players=sorted_players,
+        delta=delta
+    )
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))

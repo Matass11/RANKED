@@ -9,6 +9,40 @@ h1, h2 {
     color: #00ffcc;
 }
 
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 12px;
+}
+
+.elo-change {
+    margin-left: 10px;
+    font-weight: bold;
+    animation: floatUp 1.2s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
 a, button {
     background: #1f1f1f;
     color: white;
