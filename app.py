@@ -3,6 +3,8 @@ from RANKED import players, add_player, play_match, load_data, save_data
 
 load_data()
 
+import os
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -47,4 +49,5 @@ def play_match_route():
     return redirect("/leaderboard")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
