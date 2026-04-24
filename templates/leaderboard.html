@@ -1,0 +1,8 @@
+<h2>🏆 Leaderboard</h2>
+
+{% for name, elo in players %}
+    <p>{{ loop.index }}. {{ name }} — {{ elo }}</p>
+{% endfor %}
+
+<br>
+<a href="/">Back</a>
