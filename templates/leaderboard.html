@@ -2,19 +2,33 @@
 <div class="container"></div>
 <h2>🏆 Leaderboard</h2>
 
-{% for name, elo in players %}
-<div class="card">
-    <h3>{{ name }}</h3>
-    <p>
-        {{ elo }}
-        {% if delta and name in delta %}
-            <span class="elo-change">
-                {% if delta[name] > 0 %}+{% endif %}{{ delta[name]|round(0) }}
-            </span>
+<div class="leaderboard">
+    {% for name, elo in players %}
+    <div class="card 
+    {% if movement and name in movement %}
+        {% if movement[name] > 0 %}move-up
+        {% elif movement[name] < 0 %}move-down
         {% endif %}
-    </p>
+    {% endif %}
+    ">
+        <h3>#{{ loop.index }} {{ name }}</h3>
+
+        <p>
+            {{ elo }} ELO
+
+            {% if delta and name in delta %}
+                <span class="elo-change 
+                    {% if delta[name] > 0 %}positive
+                    {% elif delta[name] < 0 %}negative
+                    {% endif %}
+                ">
+                    {% if delta[name] > 0 %}+{% endif %}{{ delta[name]|round(0) }}
+                </span>
+            {% endif %}
+        </p>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
 
 <br>
 <a href="/">Back</a>
